@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ApiSecondClass/ApiSecondClass.csproj" />
+  <Project Path="Bussines.ApiSecond/Bussines.ApiSecond.csproj" />
+  <Project Path="Domain.ApiSecond/Domain.ApiSecond.csproj" />
+  <Project Path="Repository.ApiSecond/Repository.ApiSecond.csproj" />
+</Solution>

@@ -1,7 +1,8 @@
-﻿using Domain.ApiSecond;
+﻿using Bussines.ApiSecond.Interfaces;
+using Domain.ApiSecond;
 using Repository.ApiSecond.Data;
 
-namespace Bussines.ApiSecond
+namespace Bussines.ApiSecond.Bussines
 {
     public class ClienteBussines : IClienteBussines
     {

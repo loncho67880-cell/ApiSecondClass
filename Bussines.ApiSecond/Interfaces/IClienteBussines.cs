@@ -1,6 +1,6 @@
 ﻿using Domain.ApiSecond;
 
-namespace Bussines.ApiSecond
+namespace Bussines.ApiSecond.Interfaces
 {
     public interface IClienteBussines
     {

@@ -1,4 +1,4 @@
-﻿using Bussines.ApiSecond;
+﻿using Bussines.ApiSecond.Bussines;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiSecondClass.Controllers

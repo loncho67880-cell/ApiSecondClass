@@ -1,4 +1,4 @@
-﻿using Bussines.ApiSecond.Bussines;
+﻿using Bussines.ApiSecond.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiSecondClass.Controllers
@@ -7,13 +7,17 @@ namespace ApiSecondClass.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
+        private readonly IClienteBussines _clienteBussines;
+
+        public ClienteController(IClienteBussines clienteBussines)
+        {
+            _clienteBussines = clienteBussines;
+        }
+
         [HttpGet]
         public ActionResult GetClientesActivos() 
         {
-            ClienteBussines clienteBussines = new ClienteBussines();
-            var clientes = clienteBussines.ClientesActivos();
-
-            return Ok(clientes);
+            return Ok(_clienteBussines.ClientesActivos());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Bussines.ApiSecond.Bussines;
+using Bussines.ApiSecond.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiSecondClass.Controllers
@@ -7,12 +8,17 @@ namespace ApiSecondClass.Controllers
     [ApiController]
     public class ProductoController : ControllerBase
     {
+        private readonly IProductoBussines _productobussines;
+
+        public ProductoController(IProductoBussines productobussines)
+        {
+            _productobussines = productobussines;
+        }
+
         [HttpGet]
         public ActionResult GetProductosActivos()
         {
-            ProductoBussines productoBussines = new ProductoBussines();
-
-            return Ok(productoBussines.ProductosActivos());
+            return Ok(_productobussines.ProductosActivos());
         }
     }
 }

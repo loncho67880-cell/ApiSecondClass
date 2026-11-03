@@ -17,5 +17,10 @@ namespace Bussines.ApiSecond.Bussines
         {
             return _carritorepository.GetAll();
         }
+
+        public bool Insert(Carrito carrito)
+        {
+            return _carritorepository.InsertEF(carrito);
+        }
     }
 }

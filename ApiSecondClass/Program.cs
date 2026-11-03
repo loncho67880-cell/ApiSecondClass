@@ -15,10 +15,14 @@ builder.Services.AddDbContext<CarritoDbContext>(options =>
 //DI Repositories
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+builder.Services.AddScoped<ICarritoRepository, CarritoRepository>();
+builder.Services.AddScoped<ICarritoItemRepository, CarritoItemRepository>();
 
 //DI Bussines
 builder.Services.AddScoped<IClienteBussines, ClienteBussines>();
 builder.Services.AddScoped<IProductoBussines, ProductoBussines>();
+builder.Services.AddScoped<ICarritoBussines, CarritoBussines>();
+builder.Services.AddScoped<ICarritoItemBussines, CarritoItemBussines>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

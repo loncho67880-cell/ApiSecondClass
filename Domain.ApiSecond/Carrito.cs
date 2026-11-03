@@ -12,5 +12,6 @@ namespace Domain.ApiSecond
 
         [ForeignKey("IdCliente")]
         public Cliente Cliente { get; set; }
+        public CarritoItem CarritoItem { get; set; }
     }
 }

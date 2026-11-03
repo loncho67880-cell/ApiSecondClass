@@ -20,27 +20,28 @@ namespace Repository.ApiSecond.Data
             return _context.Carrito.ToList();
         }
 
-        public bool InsertDapper(Carrito carrito)
+        public int InsertDapper(Carrito carrito)
         {
             var conection = _context.Database.GetDbConnection();
 
-            var sql = $"INSERT INTO [dbo].[Carrito] ([IdCliente],[Fecha]) VALUES (@IdCliente,@Fecha)";
-
-            var rowsAffested = conection.Execute(sql, new
+            var sql = $"INSERT INTO [dbo].[Carrito] ([IdCliente],[Fecha]) VALUES (@IdCliente,@Fecha); " +
+                $"SELECT CAST(SCOPE_IDENTITY() AS INT);";
+                
+            var idCarrito = conection.QuerySingle<int>(sql, new
             {
                 IdCliente = carrito.IdCliente,
                 Fecha = carrito.Fecha,
             });
 
-            return rowsAffested > 0;
+            return idCarrito;
         }
 
-        public bool InsertEF(Carrito carrito)
+        public int InsertEF(Carrito carrito)
         {
             _context.Carrito.Add(carrito);
             _context.SaveChanges();
 
-            return true;
+            return carrito.Id;
         }
     }
 }

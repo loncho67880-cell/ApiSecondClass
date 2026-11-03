@@ -1,4 +1,6 @@
 ﻿using Bussines.ApiSecond.Interfaces;
+using Domain.ApiSecond;
+using Domain.ApiSecond.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiSecondClass.Controllers
@@ -17,6 +19,16 @@ namespace ApiSecondClass.Controllers
         [HttpGet]
         public ActionResult GetAll() {
             return Ok(_carritoItemBussines.GetAll());
+        }
+
+        [HttpPost]
+        public ActionResult Insert([FromBody] CarritoItemInsertDto carritoItemInsertDto)
+        {
+            return Ok(_carritoItemBussines.Insert(new CarritoItem()
+            {
+                IdCarrito = carritoItemInsertDto.IdCarrito,
+                IdProducto = carritoItemInsertDto.IdProducto
+            }));
         }
     }
 }

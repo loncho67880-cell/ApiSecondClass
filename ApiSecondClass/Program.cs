@@ -1,3 +1,4 @@
+using ApiSecondClass.Middleware;
 using Bussines.ApiSecond.Bussines;
 using Bussines.ApiSecond.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,8 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+app.UseMiddleware<RequestLogginMiddleware>();
+app.UseMiddleware<ManageExeptionsMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

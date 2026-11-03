@@ -5,7 +5,7 @@ namespace Repository.ApiSecond.Intefaces
     public interface ICarritoRepository
     {
         List<Carrito> GetAll();
-        bool InsertDapper(Carrito carrito);
-        bool InsertEF(Carrito carrito);
+        int InsertDapper(Carrito carrito);
+        int InsertEF(Carrito carrito);
     }
 }

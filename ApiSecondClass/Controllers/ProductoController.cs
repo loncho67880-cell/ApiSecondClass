@@ -1,5 +1,4 @@
-﻿using Bussines.ApiSecond.Bussines;
-using Bussines.ApiSecond.Interfaces;
+﻿using Bussines.ApiSecond.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiSecondClass.Controllers

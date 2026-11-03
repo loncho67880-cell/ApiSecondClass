@@ -1,5 +1,4 @@
 ﻿using Bussines.ApiSecond.Interfaces;
-using Domain.ApiSecond;
 using Domain.ApiSecond.Dto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,11 +24,7 @@ namespace ApiSecondClass.Controllers
         [HttpPost]
         public ActionResult Insert([FromBody] CarritoInsertDto carrito)
         {
-            return Ok(_carritoBussines.Insert(new Carrito()
-            {
-                IdCliente = carrito.IdCliente,
-                Fecha = carrito.Fecha
-            }));
+            return Ok(_carritoBussines.Insert(carrito));
         }
     }
 }

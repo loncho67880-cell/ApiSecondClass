@@ -1,6 +1,17 @@
 <Solution>
-  <Project Path="ApiSecondClass/ApiSecondClass.csproj" />
-  <Project Path="Bussines.ApiSecond/Bussines.ApiSecond.csproj" />
-  <Project Path="Domain.ApiSecond/Domain.ApiSecond.csproj" />
-  <Project Path="Repository.ApiSecond/Repository.ApiSecond.csproj" />
+  <Folder Name="/Bussines/">
+    <Project Path="Bussines.ApiSecond/Bussines.ApiSecond.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="Domain.ApiSecond/Domain.ApiSecond.csproj" />
+  </Folder>
+  <Folder Name="/Presentacion/">
+    <Project Path="ApiSecondClass/ApiSecondClass.csproj" />
+  </Folder>
+  <Folder Name="/Repositry/">
+    <Project Path="Repository.ApiSecond/Repository.ApiSecond.csproj" />
+  </Folder>
+  <Folder Name="/Unittest/">
+    <Project Path="Unittest.ApiSecond/Unittest.ApiSecond.csproj" Id="0fb95d1e-b74d-49aa-ad13-4dd32ed144a0" />
+  </Folder>
 </Solution>

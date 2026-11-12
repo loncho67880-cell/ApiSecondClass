@@ -18,5 +18,11 @@ namespace Repository.ApiSecond.Data
             var listaProductos = _context.Producto.ToList();
             return listaProductos;
         }
+
+        public Producto GetById(int id)
+        {
+            var producto = _context.Producto.FirstOrDefault(p => p.Id == id);
+            return producto;
+        }
     }
 }

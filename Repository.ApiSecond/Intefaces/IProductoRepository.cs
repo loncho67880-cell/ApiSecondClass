@@ -5,5 +5,6 @@ namespace Repository.ApiSecond.Intefaces
     public interface IProductoRepository
     {
         List<Producto> GetAll();
+        Producto GetById(int id);
     }
 }

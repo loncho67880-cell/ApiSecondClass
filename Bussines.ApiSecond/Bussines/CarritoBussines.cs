@@ -9,12 +9,14 @@ namespace Bussines.ApiSecond.Bussines
     {
         private readonly ICarritoRepository _carritorepository;
         private readonly ICarritoItemRepository _carritoitemrepository;
+        private readonly IProductoRepository _productorepository;
 
-
-        public CarritoBussines(ICarritoRepository carritorepository, ICarritoItemRepository carritoitemrepository)
+        public CarritoBussines(ICarritoRepository carritorepository, ICarritoItemRepository carritoitemrepository,
+                            IProductoRepository productoRepository)
         {
             _carritorepository = carritorepository;
             _carritoitemrepository = carritoitemrepository;
+            _productorepository = productoRepository;
         }
 
         public List<Carrito> GetAll()
@@ -30,13 +32,26 @@ namespace Bussines.ApiSecond.Bussines
                 Fecha = carrito.Fecha,
             });
 
+            // Validar si el carrito se insertó correctamente CU 7645
+            if (idCarrito <= 0)
+                throw new Exception("No se creo el Carrito Correctamente");
+
             foreach (var item in carrito.CarritoItem) 
             {
-                _carritoitemrepository.InsertDapper(new CarritoItem()
+                // Validar si el producto existe CU 7689
+                var producto = _productorepository.GetById(item.IdProducto);
+                if (producto == null)
+                    throw new Exception("El producto no existe.");
+
+                bool itemInserted = _carritoitemrepository.InsertDapper(new CarritoItem()
                 {
                     IdCarrito = idCarrito,
                     IdProducto = item.IdProducto
                 });
+
+                // Validar si el item del carrito se insertó correctamente CU 7667
+                if (!itemInserted)
+                    throw new Exception("No se creo el Item del Carrito Correctamente");
             }
 
             return true; 

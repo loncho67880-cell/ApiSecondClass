@@ -18,12 +18,16 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
 builder.Services.AddScoped<ICarritoRepository, CarritoRepository>();
 builder.Services.AddScoped<ICarritoItemRepository, CarritoItemRepository>();
+builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+builder.Services.AddScoped<IPedidoItemRepository, PedidoItemRepository>();
 
 //DI Bussines
 builder.Services.AddScoped<IClienteBussines, ClienteBussines>();
 builder.Services.AddScoped<IProductoBussines, ProductoBussines>();
 builder.Services.AddScoped<ICarritoBussines, CarritoBussines>();
 builder.Services.AddScoped<ICarritoItemBussines, CarritoItemBussines>();
+builder.Services.AddScoped<IPedidoBussines, PedidoBussines>();
+builder.Services.AddScoped<IPedidoItemBussines, PedidoItemBussines>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

@@ -122,5 +122,28 @@ namespace Unittest.ApiSecond.Bussines
             // Assert
             Assert.Throws<Exception>(() => carritoBussines.Insert(carritoInsertDto));
         }
+
+        [Fact]
+        public void Insert_ShouldThrowException_WhenDateIsInvalid()
+        {
+            // Arrange
+            var mockCarritoRepository = new Mock<ICarritoRepository>();
+            var mockCarritoItemRepository = new Mock<ICarritoItemRepository>();
+            var mockProductoRepository = new Mock<IProductoRepository>();
+            var carritoInsertDto = new CarritoInsertDto
+            {
+                IdCliente = 1,
+                Fecha = DateTime.Now.AddDays(-2),
+                CarritoItem = new List<CarritoItemInsertDto>
+                {
+                    new CarritoItemInsertDto { IdProducto = 1 }
+                }
+            };
+            mockCarritoRepository.Setup(x => x.InsertDapper(It.IsAny<Carrito>())).Returns(1);
+            mockProductoRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns((Producto)null);
+            var carritoBussines = new CarritoBussines(mockCarritoRepository.Object, mockCarritoItemRepository.Object, mockProductoRepository.Object);
+            // Assert
+            Assert.Throws<Exception>(() => carritoBussines.Insert(carritoInsertDto));
+        }
     }
 }

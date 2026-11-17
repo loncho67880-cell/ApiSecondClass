@@ -32,6 +32,12 @@ namespace Bussines.ApiSecond.Bussines
                 Fecha = carrito.Fecha,
             });
 
+            int diferenceInDays = (DateTime.Now - carrito.Fecha).Days;
+
+            //Validar si la fecha es menor a la fecha actual CU 7644
+            if (diferenceInDays > 0)
+                throw new Exception("La fecha no puede ser menor a la fecha actual.");
+
             // Validar si el carrito se insertó correctamente CU 7645
             if (idCarrito <= 0)
                 throw new Exception("No se creo el Carrito Correctamente");

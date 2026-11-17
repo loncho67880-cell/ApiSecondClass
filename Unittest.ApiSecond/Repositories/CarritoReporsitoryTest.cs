@@ -19,6 +19,7 @@ namespace Unittest.ApiSecond.Repositories
 
             //Inicializamos la base de datos en memoria con algunos datos de prueba
             context.Carrito.Add(new Carrito { Id = 1, IdCliente = 1 });
+            context.Carrito.Add(new Carrito { Id = 2, IdCliente = 2 });
 
             context.SaveChanges();
         }

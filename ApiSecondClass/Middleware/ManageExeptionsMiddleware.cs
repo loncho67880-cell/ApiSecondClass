@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Microsoft.ApplicationInsights;
 
 namespace ApiSecondClass.Middleware
 {
@@ -10,11 +11,14 @@ namespace ApiSecondClass.Middleware
 
         private readonly IWebHostEnvironment _env;
 
-        public ManageExeptionsMiddleware(RequestDelegate requestDelegate, ILogger<RequestLogginMiddleware> logger, IWebHostEnvironment env)
+        private readonly TelemetryClient _telemetryClient;
+
+        public ManageExeptionsMiddleware(RequestDelegate requestDelegate, ILogger<RequestLogginMiddleware> logger, IWebHostEnvironment env, TelemetryClient telemetryClient)
         {
             _requestDelegate = requestDelegate;
             _logger = logger;
             _env = env;
+            _telemetryClient = telemetryClient;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -32,6 +36,12 @@ namespace ApiSecondClass.Middleware
         private Task HandledExceptionAsync(HttpContext context, Exception ex)
         {
             _logger.LogError(ex.Message);
+
+            _telemetryClient.TrackException(ex, new Dictionary<string, string>
+            {
+                ["Path"] = context.Request.Path,
+                ["Method"] = context.Request.Method
+            });
 
             var response = new
             {

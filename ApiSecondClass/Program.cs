@@ -1,4 +1,5 @@
 using ApiSecondClass.Middleware;
+using Microsoft.ApplicationInsights.AspNetCore;
 using Bussines.ApiSecond.Bussines;
 using Bussines.ApiSecond.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,8 @@ builder.Services.AddScoped<ICarritoBussines, CarritoBussines>();
 builder.Services.AddScoped<ICarritoItemBussines, CarritoItemBussines>();
 builder.Services.AddScoped<IPedidoBussines, PedidoBussines>();
 builder.Services.AddScoped<IPedidoItemBussines, PedidoItemBussines>();
+
+builder.Services.AddApplicationInsightsTelemetry();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

@@ -19,6 +19,12 @@ namespace Repository.ApiSecond.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Carrito>()
+                .HasOne(c => c.Cliente)
+                .WithMany()
+                .HasForeignKey(c => c.IdCliente)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

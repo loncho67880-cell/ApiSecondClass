@@ -15,6 +15,7 @@ namespace Repository.ApiSecond.EF
         public DbSet<CarritoItem> CarritoItem => Set<CarritoItem>();
         public DbSet<Pedido> Pedido => Set<Pedido>();
         public DbSet<PedidoItem> PedidoItem => Set<PedidoItem>();
+        public DbSet<Usuario> Usuario => Set<Usuario>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

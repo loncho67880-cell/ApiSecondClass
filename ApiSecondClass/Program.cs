@@ -1,8 +1,11 @@
+using System.Text;
 using ApiSecondClass.Middleware;
 using Microsoft.ApplicationInsights.AspNetCore;
 using Bussines.ApiSecond.Bussines;
 using Bussines.ApiSecond.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Repository.ApiSecond.Data;
 using Repository.ApiSecond.EF;
 using Repository.ApiSecond.Intefaces;
@@ -21,6 +24,7 @@ builder.Services.AddScoped<ICarritoRepository, CarritoRepository>();
 builder.Services.AddScoped<ICarritoItemRepository, CarritoItemRepository>();
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 builder.Services.AddScoped<IPedidoItemRepository, PedidoItemRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 //DI Bussines
 builder.Services.AddScoped<IClienteBussines, ClienteBussines>();
@@ -29,8 +33,24 @@ builder.Services.AddScoped<ICarritoBussines, CarritoBussines>();
 builder.Services.AddScoped<ICarritoItemBussines, CarritoItemBussines>();
 builder.Services.AddScoped<IPedidoBussines, PedidoBussines>();
 builder.Services.AddScoped<IPedidoItemBussines, PedidoItemBussines>();
+builder.Services.AddScoped<IUsuarioBussines, UsuarioBussines>();
 
 builder.Services.AddApplicationInsightsTelemetry();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        };
+    });
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -48,6 +68,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

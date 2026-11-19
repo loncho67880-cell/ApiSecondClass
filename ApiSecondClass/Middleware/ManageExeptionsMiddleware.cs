@@ -47,7 +47,8 @@ namespace ApiSecondClass.Middleware
             {
                 Statuscode = context.Response.StatusCode,
                 Mensaje = "Error desde Api Carrito.",
-                DetalleError = ex.Message
+                DetalleError = ex.Message,
+                InnerexpcionMessage = ex.InnerException.Message
             };
 
             var json = JsonSerializer.Serialize(response);

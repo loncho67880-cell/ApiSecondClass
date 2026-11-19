@@ -2,6 +2,9 @@
   <Folder Name="/Bussines/">
     <Project Path="Bussines.ApiSecond/Bussines.ApiSecond.csproj" />
   </Folder>
+  <Folder Name="/Common/">
+    <Project Path="Common.ApiSecond/Common.ApiSecond.csproj" Id="6e9558cc-1dfd-4b4f-b5e5-49870c86fe20" />
+  </Folder>
   <Folder Name="/Domain/">
     <Project Path="Domain.ApiSecond/Domain.ApiSecond.csproj" />
   </Folder>
